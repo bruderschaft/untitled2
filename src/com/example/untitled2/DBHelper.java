@@ -16,12 +16,15 @@ class DBHelper extends SQLiteOpenHelper {
     public static final String kurs = "passw";
     public static final String name = "name";
     public static final String surname = "surname";
-    public static final String
+    public static final String age = "age";
+    public static final String idStudent = "idStudent";
+
 
     private static final String CREATE1_TABLE = "create table " + TABLE1_NAME + " ( _id integer primary key autoincrement, "
-            + LOGIN + " TEXT, " + PASSW + " TEXT)";
+            + name + " TEXT, " + surname + " TEXT, " + age + " INTEGER)";
     private static final String CREATE2_TABLE = "create table " + TABLE2_NAME + " ( _id integer primary key autoincrement, "
-            + LOGIN + " TEXT, " + PASSW + " TEXT)";
+            + idStudent + " TEXT, " + group + " TEXT, " + kurs + " TEXT)";
+
 
     public DBHelper(Context context) {
         // конструктор суперкласса
