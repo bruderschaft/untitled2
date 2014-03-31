@@ -2,10 +2,8 @@ package com.example.untitled2;
 
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +15,7 @@ public class MyActivity extends Activity implements OnClickListener{
     final String LOG_TAG = "myLogs";
 
     Button btnAdd, btnRead, btnClear;
-    EditText etName, etEmail;
+    EditText studentName, studentSurname, studentAge;
 
     DBHelper dbHelper;
 
@@ -36,8 +34,9 @@ public class MyActivity extends Activity implements OnClickListener{
         btnClear = (Button) findViewById(R.id.btnClear);
         btnClear.setOnClickListener(this);
 
-        etName = (EditText) findViewById(R.id.etName);
-        etEmail = (EditText) findViewById(R.id.etEmail);
+        studentName = (EditText) findViewById(R.id.student_name);
+        studentSurname = (EditText) findViewById(R.id.student_surname);
+        studentAge = (EditText) findViewById(R.id.student_age);
 
         // создаем объект для создания и управления версиями БД
         dbHelper = new DBHelper(this);
@@ -51,8 +50,9 @@ public class MyActivity extends Activity implements OnClickListener{
         ContentValues cv = new ContentValues();
 
         // получаем данные из полей ввода
-        String name = etName.getText().toString();
-        String email = etEmail.getText().toString();
+        String name = studentName.getText().toString();
+        String surname = studentSurname.getText().toString();
+        String age = studentAge.getText().toString();
 
         // подключаемся к БД
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -64,7 +64,8 @@ public class MyActivity extends Activity implements OnClickListener{
                 // подготовим данные для вставки в виде пар: наименование столбца - значение
 
                 cv.put("name", name);
-                cv.put("email", email);
+                cv.put("surname", surname);
+                cv.put("age", age);
                 // вставляем запись и получаем ее ID
                 long rowID = db.insert("students", null, cv);
                 Log.d(LOG_TAG, "row inserted, ID = " + rowID);
@@ -82,14 +83,16 @@ public class MyActivity extends Activity implements OnClickListener{
                     // определяем номера столбцов по имени в выборке
                     int idColIndex = c.getColumnIndex("id");
                     int nameColIndex = c.getColumnIndex("name");
-                    int emailColIndex = c.getColumnIndex("email");
+                    int surnameColIndex = c.getColumnIndex("surname");
+                    int ageColIndex = c.getColumnIndex("age");
 
                     do {
                         // получаем значения по номерам столбцов и пишем все в лог
                         Log.d(LOG_TAG,
                                 "ID = " + c.getInt(idColIndex) +
                                         ", name = " + c.getString(nameColIndex) +
-                                        ", email = " + c.getString(emailColIndex));
+                                        ", surname = " + c.getString(surnameColIndex) +
+                                        ", age = " + c.getString(ageColIndex));
                         // переход на следующую строку
                         // а если следующей нет (текущая - последняя), то false - выходим из цикла
                     } while (c.moveToNext());
