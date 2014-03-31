@@ -60,19 +60,19 @@ public class MyActivity extends Activity implements OnClickListener{
 
         switch (v.getId()) {
             case R.id.btnAdd:
-                Log.d(LOG_TAG, "--- Insert in users: ---");
+                Log.d(LOG_TAG, "--- Insert in students: ---");
                 // подготовим данные для вставки в виде пар: наименование столбца - значение
 
                 cv.put("name", name);
                 cv.put("email", email);
                 // вставляем запись и получаем ее ID
-                long rowID = db.insert("users", null, cv);
+                long rowID = db.insert("students", null, cv);
                 Log.d(LOG_TAG, "row inserted, ID = " + rowID);
                 break;
             case R.id.btnRead:
-                Log.d(LOG_TAG, "--- Rows in users: ---");
-                // делаем запрос всех данных из таблицы users, получаем Cursor
-                Cursor c = db.query("users", null, null, null, null, null, null);
+                Log.d(LOG_TAG, "--- Rows in students: ---");
+                // делаем запрос всех данных из таблицы students, получаем Cursor
+                Cursor c = db.query("students", null, null, null, null, null, null);
 
                 // ставим позицию курсора на первую строку выборки
                 // если в выборке нет строк, вернется false
@@ -98,9 +98,9 @@ public class MyActivity extends Activity implements OnClickListener{
                 c.close();
                 break;
             case R.id.btnClear:
-                Log.d(LOG_TAG, "--- Clear users: ---");
+                Log.d(LOG_TAG, "--- Clear students: ---");
                 // удаляем все записи
-                int clearCount = db.delete("users", null, null);
+                int clearCount = db.delete("students", null, null);
                 Log.d(LOG_TAG, "deleted rows count = " + clearCount);
                 break;
         }

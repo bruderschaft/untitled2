@@ -12,8 +12,12 @@ class DBHelper extends SQLiteOpenHelper {
 
     public static final String TABLE1_NAME = "students";
     public static final String TABLE2_NAME = "groups";
-    public static final String LOGIN = "login";
-    public static final String PASSW = "passw";
+    public static final String group = "login";
+    public static final String kurs = "passw";
+    public static final String name = "name";
+    public static final String surname = "surname";
+    public static final String
+
     private static final String CREATE1_TABLE = "create table " + TABLE1_NAME + " ( _id integer primary key autoincrement, "
             + LOGIN + " TEXT, " + PASSW + " TEXT)";
     private static final String CREATE2_TABLE = "create table " + TABLE2_NAME + " ( _id integer primary key autoincrement, "
