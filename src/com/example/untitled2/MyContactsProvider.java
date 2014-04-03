@@ -30,7 +30,7 @@ public class MyContactsProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query(STUDENT_TABLE, projection, selection,selectionArgs, null, null, sortOrder);
-        cursor.setNotificationUri(getContext().getContentResolver(),CONTACT_CONTENT_URI);
+        cursor.setNotificationUri(getContext().getContentResolver(), CONTACT_CONTENT_URI);
         return cursor;
     }
 

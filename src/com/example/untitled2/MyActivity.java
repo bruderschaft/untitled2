@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -124,6 +125,8 @@ public class MyActivity extends Activity implements OnClickListener {
                 int clearCount = db.delete("students", null, null);
                 Log.d(LOG_TAG, "deleted rows count = " + clearCount);
                 break;
+            case R.id.listAct:
+                Intent intent = new
         }
         // закрываем подключение к БД
         dbHelper.close();
