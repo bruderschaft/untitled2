@@ -5,7 +5,6 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
 public class ListAct extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -17,7 +16,7 @@ public class ListAct extends ListActivity implements LoaderManager.LoaderCallbac
         String[]  columns = {"name", "age"};
         int[] viewsID = {R.id.textName, R.id.textAge};
 
-        mAdapter = new SimpleAdapter(this, viewsID, null, columns, viewsID, 0);
+        mAdapter = new SimpleCursorAdapter(this, R.layout.list_item, null, columns, viewsID, 0);
     }
 
     @Override
