@@ -126,7 +126,8 @@ public class MyActivity extends Activity implements OnClickListener {
                 Log.d(LOG_TAG, "deleted rows count = " + clearCount);
                 break;
             case R.id.listAct:
-                Intent intent = new
+                Intent intent = new Intent(MyActivity.this, ListAct.class);
+                startActivity(intent);
         }
         // закрываем подключение к БД
         dbHelper.close();
