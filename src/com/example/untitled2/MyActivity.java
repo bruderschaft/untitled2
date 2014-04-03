@@ -19,7 +19,7 @@ import android.widget.EditText;
 public class MyActivity extends Activity implements OnClickListener {
     final String LOG_TAG = "myLogs";
 
-    Button btnAdd, btnRead, btnClear;
+    Button btnAdd, btnRead, btnClear, btnList;
     EditText studentName, studentSurname, studentAge;
 
     DBHelper dbHelper;
@@ -54,6 +54,9 @@ public class MyActivity extends Activity implements OnClickListener {
         studentName = (EditText) findViewById(R.id.student_name);
         studentSurname = (EditText) findViewById(R.id.student_surname);
         studentAge = (EditText) findViewById(R.id.student_age);
+
+        btnList = (Button) findViewById(R.id.listAct);
+        btnList.setOnClickListener(this);
 
         // создаем объект для создания и управления версиями БД
         dbHelper = new DBHelper(this);
