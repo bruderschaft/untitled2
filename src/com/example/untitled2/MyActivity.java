@@ -1,9 +1,13 @@
 package com.example.untitled2;
 
 import android.app.Activity;
+import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,13 +15,25 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MyActivity extends Activity implements OnClickListener{
+public class MyActivity extends Activity implements OnClickListener {
     final String LOG_TAG = "myLogs";
 
     Button btnAdd, btnRead, btnClear;
     EditText studentName, studentSurname, studentAge;
 
     DBHelper dbHelper;
+    MyContactsProvider myContactsProvider;
+
+    static final String STUDENT_TABLE = "students";
+
+    static final String AUTHORITY = "com.example.untitled2";
+
+    static final String CONTACT_PATH = "students";
+
+    public static final Uri CONTACT_CONTENT_URI = Uri.parse("content://"
+            + AUTHORITY + "/" + CONTACT_PATH);
+
+
 
     /** Called when the activity is first created. */
     @Override
@@ -40,6 +56,7 @@ public class MyActivity extends Activity implements OnClickListener{
 
         // создаем объект для создания и управления версиями БД
         dbHelper = new DBHelper(this);
+
     }
 
 
@@ -56,7 +73,8 @@ public class MyActivity extends Activity implements OnClickListener{
 
         // подключаемся к БД
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-
+        String[] projection = {"name", "age"};
+        Cursor cursor = getContentResolver().query(CONTACT_CONTENT_URI, projection, null, null, null);
 
         switch (v.getId()) {
             case R.id.btnAdd:

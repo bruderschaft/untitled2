@@ -19,7 +19,7 @@ class DBHelper extends SQLiteOpenHelper {
     public static final String age = "age";
     public static final String idStudent = "idStudent";
 
-
+    //insert в 1 табл, возвращает id, инсерт во 2ую с таким id
     private static final String CREATE1_TABLE = "create table " + TABLE1_NAME + " ( _id integer primary key autoincrement, "
             + name + " TEXT, " + surname + " TEXT, " + age + " INTEGER)";
     private static final String CREATE2_TABLE = "create table " + TABLE2_NAME + " ( _id integer primary key autoincrement, "
@@ -34,7 +34,6 @@ class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(LOG_TAG, "--- onCreate database ---");
-        // создаем таблицу с полями
         db.execSQL(CREATE1_TABLE);
         db.execSQL(CREATE2_TABLE);
     }
